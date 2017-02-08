@@ -34,10 +34,6 @@ class SafeActionSpace(vectorized.Wrapper):
     Doing so is very convenient for research, since today's RL algorithms rely on random
     exploration, which is hurt by small action spaces.  As our algorithms get better
     and we switch to using the raw VNC commands, this wrapper will become less important.
-
-
-    NOTE: This class will soon be moved to `wrappers.experimental`. However the logic must currently remain in
-    wrappers.SafeActionSpace in order to maintain backwards compatibility.
     """
     def __init__(self, env):
         super(SafeActionSpace, self).__init__(env)
@@ -67,12 +63,12 @@ class SafeActionSpace(vectorized.Wrapper):
 
 
 class SoftmaxClickMouse(vectorized.ActionWrapper):
-    '''
+    """
     Creates a Discrete action space of mouse clicks.
 
     This wrapper divides the active region into cells and creates an action for
     each which clicks in the middle of the cell.
-    '''
+    """
     def __init__(self, env, active_region=(10, 75 + 50, 10 + 160, 75 + 210), discrete_mouse_step=10, noclick_regions=[]):
         super(SoftmaxClickMouse, self).__init__(env)
         logger.info('Using SoftmaxClickMouse with action_region={}, noclick_regions={}'.format(active_region, noclick_regions))
